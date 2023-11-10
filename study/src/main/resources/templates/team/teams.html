@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container" style="max-width: 600px">
+    <div class="py-5 text-center">
+        <h2>사원 목록</h2>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary float-end"
+                    th:onclick="|location.href='@{/team/addForm}'|"
+                    type="button">팀
+                등록</button>
+            <button style="margin-right: 10px"
+                    class="btn btn-primary float-end"
+                    th:onclick="|location.href='@{/}'|"
+                    type="button">홈</button>
+        </div>
+    </div>
+    <hr class="my-4">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>팀 코드</th>
+                <th>팀 명</th>
+                <th>보유한 팀원 수</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="team : ${teams}">
+                <td th:text="${team.id}"></td>
+                <td th:text="${team.name}"></td>
+                <td th:text="${team.members.size()}"></td>
+            </tr>
+            </tbody>
+            <!--            <nav>-->
+            <!--                <ul>-->
+            <!--                    <li th:if="${items.hasPrevious()}"><a th:href="@{|?page=${items.number - 1}|}">Prev</a></li>-->
+            <!--                    <li th:each="pageNum : ${#numbers.sequence(0, items.totalPages - 1)}">-->
+            <!--                        <a th:href="@{|?page=${pageNum}|}" th:text="${pageNum + 1}">1</a>-->
+            <!--                    </li>-->
+            <!--                    <li th:if="${items.hasNext()}"><a th:href="@{|?page=${items.number + 1}|}">Next</a></li>-->
+            <!--                </ul>-->
+            <!--            </nav>-->
+
+        </table>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
