@@ -34,7 +34,9 @@
             </thead>
             <tbody>
             <tr th:each="team : ${teams}">
-                <td th:text="${team.id}"></td>
+                <td>
+                    <a th:text="${team.id}" th:href="@{/team/teams/{teamId}(teamId=${team.id})}"></a>
+                </td>
                 <td th:text="${team.name}"></td>
                 <td th:text="${team.members.size()}"></td>
             </tr>

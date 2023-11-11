@@ -16,7 +16,7 @@ public class Team {
     @Column(name = "team_id")
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Member> members = new ArrayList<>();
 
     public Team(String name) {

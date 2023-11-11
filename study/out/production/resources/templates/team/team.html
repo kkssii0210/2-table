@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link href="../css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>팀 상세</h2>
+    </div>
+    <div>
+        <label for="teamId">상품 ID</label>
+        <input type="text" id="teamId" name="teamId" class="form-control"
+               value="1" th:value="${team.id}" readonly>
+    </div>
+    <div>
+        <label for="name">팀명</label>
+        <input type="text" id="name" name="name" class="form-control"
+               value="상품A" th:value="${team.name}" readonly>
+    </div>
+    <div>
+        <h4>팀원 목록</h4>
+        <ul>
+            <li th:each="member : ${team.members}">
+                <span th:text="${member.username}"></span>
+            </li>
+        </ul>
+    </div>
+    <hr class="my-4">
+    <div class="row">
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg"
+                    th:onclick="|location.href='@{/team/{teamId}/edit(teamId=${team.id})}'|" type="button">팀명 수정</button>
+        </div>
+        <div class="col">
+            <button class="w-100 btn btn-secondary btn-lg"
+                    onclick="location.href='items.html'"
+                    th:onclick="|location.href='@{/team/teams}'|"
+                    type="button">목록으로</button>
+        </div>
+        <div class="col">
+            <form th:action="@{/team/{teamId}/delete(teamId=${team.id})}" method="post">
+                <input type="hidden" name="_method" value="delete" />
+                <button class="w-100 btn btn-secondary btn-lg" type="submit" onclick="return confirm('정말 삭제하시겠습니까?');">
+                    삭제
+                </button>
+            </form>
+        </div>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
